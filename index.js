@@ -1,5 +1,7 @@
 const express = require('express');
+const config = require('config');
 const mongoose = require('mongoose');
+const helmet = require('helmet');
 const app = express();
 const port = 3000;
 // To parse incoming post requests url encoded or json... 
@@ -9,6 +11,7 @@ const userRoutes = require('./api/routes/users');
 //Parsing incoming requests of both forms(url encoded and json)
 app.use(bodyParser.urlencoded({extended:false }));
 app.use(bodyParser.json());
+app.use(helmet());
 //mongoose config
 mongoose.connect("mongodb://localhost/kaizen")
 .then(() => console.log('connected to mongodb'))

@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt');
 const router = express.Router();
 const User = require('../models/users');
 const jwt = require('jsonwebtoken');
+
 router.post('/signup', (req, res, next) => {
     User.find({
         email: req.body.email
