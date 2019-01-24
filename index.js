@@ -8,6 +8,7 @@ const port = 3000;
 const bodyParser = require('body-parser');
 //import routes
 const userRoutes = require('./api/routes/users');
+const bookRoutes = require('./api/routes/books');
 //Parsing incoming requests of both forms(url encoded and json)
 app.use(bodyParser.urlencoded({extended:false }));
 app.use(bodyParser.json());
@@ -32,6 +33,7 @@ app.use((req, res, next) => {
 
 //Routes Handling
 app.use('/user', userRoutes);
+app.use('', bookRoutes);
 //routes which don't match the above routes will pass through this and give error.
 app.use((req, res, next) => {
     const error  = new Error('Not Found');

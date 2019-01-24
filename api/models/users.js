@@ -10,6 +10,18 @@ const UserSchema = mongoose.Schema({
     },
     password: {type: String, required: true},
     name: {type: String, required: true},
+    toread: {
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: 'books'
+    },
+    read: {
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: 'books'
+    },
+    favourite: {
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: 'books'
+    },
     username: {type: String, required: true}
 })
 
