@@ -5,105 +5,72 @@ const router = express.Router();
 const User = require('../models/users');
 const Books = require('../models/books');
 
+//toadd the book in the toread array. 
 
 router.post('/toread', (req, res, next) => {
-    User.findById(req.body.userId).exec().then((user) => {
-        const book = new Books({
-            _id: mongoose.Types.ObjectId(),
-            name: req.body.name,
-            authors: req.body.authors,
-            subtitle: req.body.subtitle,
-            thumbnail: req.body.thumbnail,
-            description: req.body.description,
-            userId: req.body.userId
-        });
-        book.save((err, book) => {
-            if(err) {
-                throw err;
-            } else {
-                user.toread.push(book._id);
-                user.save((err, user) => {
-                    if(err) {
-                        res.status(500).json({
-                            message: "Error while adding"
-                        })
-                    } else {
-                        res.status(200).json({
-                            message: "Book Added Suuccessfully",
-                            data: user
-                        })
-                    }
-                    
-                })
-                
-            }
+  Books.findOne({
+    userId: req.body.userId
+  }).exec().then(book => {
+    //TODO Make a check for only distinct books to be stored
+    console.log(book);
+    book.toread.push(req.body.toread);
+    book.save((err, savedBook) => {
+      if (err) {
+        res.status(500).json({
+          message: "An error occured"
         })
+      } else {
+        res.status(200).json({
+          message: "Book Added successfully",
+          data: savedBook
+        })
+      }
     })
-})
+  })
+});
+
 router.post('/read', (req, res, next) => {
-    User.findById(req.body.userId).exec().then((user) => {
-        const book = new Books({
-            _id: mongoose.Types.ObjectId(),
-            name: req.body.name,
-            authors: req.body.authors,
-            subtitle: req.body.subtitle,
-            thumbnail: req.body.thumbnail,
-            description: req.body.description,
-            userId: req.body.userId
-        });
-        book.save((err, book) => {
-            if(err) {
-                throw err;
-            } else {
-                user.read.push(book._id);
-                user.save((err, user) => {
-                    if(err) {
-                        res.status(500).json({
-                            message: "Error while adding"
-                        })
-                    } else {
-                        res.status(200).json({
-                            message: "Book Added Suuccessfully",
-                            data: user
-                        })
-                    }
-                    
-                })
-            }
+  Books.findOne({
+    userId: req.body.userId
+  }).exec().then(book => {
+    //TODO Make a check for only distinct books to be stored
+    book.read.push(req.body.read);
+    book.save((err, savedBook) => {
+      if (err) {
+        res.status(500).json({
+          message: "An error occured"
         })
+      } else {
+        res.status(200).json({
+          message: "Book Added successfully",
+          data: savedBook
+        })
+      }
     })
+  })
+
 })
+
 router.post('/favourite', (req, res, next) => {
-    User.findById(req.body.userId).exec().then((user) => {
-        const book = new Books({
-            _id: mongoose.Types.ObjectId(),
-            name: req.body.name,
-            authors: req.body.authors,
-            subtitle: req.body.subtitle,
-            thumbnail: req.body.thumbnail,
-            description: req.body.description,
-            userId: req.body.userId
-        });
-        book.save((err, book) => {
-            if(err) {
-                throw err;
-            } else {
-                user.favourite.push(book._id);
-                user.save((err, user) => {
-                    if(err) {
-                        res.status(500).json({
-                            message: "Error while adding"
-                        })
-                    } else {
-                        res.status(200).json({
-                            message: "Book Added Suuccessfully",
-                            data: user
-                        })
-                    }
-                    
-                })
-            }
+  Books.findOne({
+    userId: req.body.userId
+  }).exec().then(book => {
+    //TODO Make a check for only distinct books to be stored
+    book.favourite.push(req.body.favourite);
+    book.save((err, savedBook) => {
+      if (err) {
+        res.status(500).json({
+          message: "An error occured"
         })
+      } else {
+        res.status(200).json({
+          message: "Book Added successfully",
+          data: savedBook
+        })
+      }
     })
+  })
+
 })
+
 module.exports = router;
