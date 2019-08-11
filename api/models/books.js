@@ -7,26 +7,43 @@ const bookSchema = mongoose.Schema({
     ref: 'Users'
   },
   toread: [{
+    id:String,
     name: String,
     authors: [String],
     description: String,
-    thumbnail: String,
+    imageLinks: {
+      thumbnail: String,
+      small:String,
+      medium:String
+    },
     subtitle: String,
+    title: String
   }],
   read: [{
+    id:String,
     name: String,
     authors: [String],
     description: String,
-    thumbnail: String,
+    imageLinks: {
+      thumbnail: String,
+      small:String,
+      medium:String
+    },
     subtitle: String,
+    title: String
   }],
   favourite: [{
+    id:String,
     name: String,
     authors: [String],
     description: String,
-    thumbnail: String,
+    imageLinks: {
+      thumbnail: String,
+      small:String,
+      medium:String
+    },
     subtitle: String,
+    title: String
   }],
 })
-
 module.exports = mongoose.model('books', bookSchema);
