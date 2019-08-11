@@ -17,7 +17,8 @@ const bookSchema = mongoose.Schema({
       medium:String
     },
     subtitle: String,
-    title: String
+    title: String,
+    isFavourite: Boolean
   }],
   read: [{
     id:String,
@@ -30,7 +31,8 @@ const bookSchema = mongoose.Schema({
       medium:String
     },
     subtitle: String,
-    title: String
+    title: String,
+    isFavourite: Boolean
   }],
   favourite: [{
     id:String,
@@ -43,7 +45,8 @@ const bookSchema = mongoose.Schema({
       medium:String
     },
     subtitle: String,
-    title: String
+    title: String,
+    isFavourite: Boolean
   }],
 })
 module.exports = mongoose.model('books', bookSchema);
