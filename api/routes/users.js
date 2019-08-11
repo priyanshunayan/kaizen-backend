@@ -113,5 +113,19 @@ router.post('/signup', (req, res, next) => {
 
                   )
               });
-
+              router.get('/:username',(req, res, next) => {
+                User.findOne({
+                  username: req.params.username
+                }).exec().then(user => {
+                    const userId = user._id
+                    return Books.findOne({
+                      userId: userId
+                    }).exec();
+                }).then((book) => {
+                    res.status(200).json({
+                      read: book.read,
+                      favourites: book.favourite
+                    });
+                }).catch(e => console.log(e));
+              })
               module.exports = router;
