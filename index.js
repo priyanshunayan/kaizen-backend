@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const helmet = require('helmet');
 const app = express();
 const port = 3000;
-// To parse incoming post requests url encoded or json... 
+// To parse incoming post requests url encoded or json...
 const bodyParser = require('body-parser');
 //import routes
 const userRoutes = require('./api/routes/users');
@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({extended:false }));
 app.use(bodyParser.json());
 app.use(helmet());
 //mongoose config
-mongoose.connect("mongodb://localhost/kaizen")
+mongoose.connect("mongodb://priyanshunayan:Kamalnayan1@ds257054.mlab.com:57054/kaizen")
 .then(() => console.log('connected to mongodb'))
 .catch(() => console.log('can not connect to mongodb'));
 mongoose.Promise = global.Promise;
