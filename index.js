@@ -50,6 +50,6 @@ app.use((error, req, res, next) => {
 })
 
 //App listening
-app.listen(port, () => console.log(`App listening on the port ${port}`));
+app.listen(process.env.port || 3000, () => console.log(`App listening on the port ${port}`));
 
 module.exports = app;
